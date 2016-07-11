@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "81f45ba8-8f39-4987-8cdd-4c9b42b2ce97++7917",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "81f45ba8-8f39-4987-8cdd-4c9b42b2ce97++7917" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "81f45ba8-8f39-4987-8cdd-4c9b42b2ce97++7917" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C2BDCFE6-B4EA-40C0-BA7C-7C507AFE08B8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "81f45ba8-8f39-4987-8cdd-4c9b42b2ce97++7917" : "SwiftWeiBoSVN\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftWeiBo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftWeiBo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/10.0.1.8\/mycode",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81f45ba8-8f39-4987-8cdd-4c9b42b2ce97++7917"
+    }
+  ]
+}

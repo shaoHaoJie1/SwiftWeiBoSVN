@@ -1,0 +1,52 @@
+//
+//  HomeTableViewController.swift
+//  swift新浪微博
+//
+//  Created by GG on 16/7/3.
+//  Copyright © 2016年 GG. All rights reserved.
+//
+
+import UIKit
+
+class HomeTableViewController: BaseTableViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+       self.loginView?.setNologinIsHome(true, imageName: "visitordiscover_feed_image_house", text: "关注一些人，回这里看看有什么惊喜")
+       
+        if self.userLogin == true {
+            
+            let btn = titleBututton(type: .Custom)
+            
+            btn.setTitle("涅槃观光", forState: .Normal)
+            
+            btn.sizeToFit()
+            btn.setTitleColor(UIColor.blackColor(), forState:.Normal)
+            self.navigationItem.titleView = btn
+            
+            
+               btn.addTarget(self, action:#selector(HomeTableViewController.clickbtn(_:)), forControlEvents: .TouchUpInside)
+            
+            
+}
+    
+        
+     
+        
+        
+        
+        
+    }
+  
+    func clickbtn(btn:UIButton)  {
+        
+        btn.selected = !btn.selected
+        
+    }
+    
+          
+ 
+}
+
+

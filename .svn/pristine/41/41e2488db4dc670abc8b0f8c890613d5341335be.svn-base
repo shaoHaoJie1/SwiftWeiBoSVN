@@ -1,0 +1,42 @@
+1.设置icon和launch image
+   1.1在asset中设置两者
+
+      launch image
+      先在asset里面创建一个launch image 文件夹
+
+      在工程将启动文件资源设置为自己在asset里面创建的 launch image
+    image文件夹
+2.动态搭框架
+
+
+   1。动态获取命名空间
+
+   2.拼接类名 “区间” + .+类名
+
+   3.根据拼接好的类名，创建一个类 ：nsclassFrimString
+
+   4.指定为ViewController类型
+
+   5.创建对象
+
+
+3。在tabBar插入一个btn
+
+   1.现在tabBar上设置一个占位符
+
+   2.设置btn的frame 放入
+4.通过继承的方式，给多给控制器设置统一界面，每个界面的细微差异，在自控制继续设置
+
+
+5.使用可选连优化拆包
+
+
+   self.loginView?.setNologinIsHome(true, imageName: "visitordiscover_feed_image_house", text: "关注一些人，回这里看看有什么惊喜")
+
+6
+
+
+
+
+
+

@@ -1,0 +1,295 @@
+//
+//  HomeTableViewController.swift
+//  swift新浪微博
+//
+//  Created by GG on 16/7/3.
+//  Copyright © 2016年 GG. All rights reserved.
+//
+
+import UIKit
+let kMenuView = "KMenuViewShowHide"
+
+class HomeTableViewController: BaseTableViewController{
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+       self.loginView?.setNologinIsHome(true, imageName: "visitordiscover_feed_image_house", text: "关注一些人，回这里看看有什么惊喜")
+       
+        
+      
+     
+      self.setTitleView()
+        
+        
+        //监听菜单栏的显示与消失
+        
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeTableViewController.change), name: kMenuView, object: nil)
+        
+        
+        
+        
+        
+        
+        
+    }
+  
+    func change() {
+        
+        let title = self.navigationItem.titleView as! titleBututton
+        
+        
+        title.selected = !title.selected
+        
+        
+        
+    }
+    
+   
+    
+    
+    
+    
+    //设置titleView
+func setTitleView()  {
+        
+        
+        if self.userLogin == true
+        {
+            
+            let btn = titleBututton(type: .Custom)
+            
+            btn.setTitle("涅槃观光", forState: .Normal)
+            
+            btn.sizeToFit()
+            btn.setTitleColor(UIColor.blackColor(), forState:.Normal)
+            self.navigationItem.titleView = btn
+            
+            
+            btn.addTarget(self, action:#selector(HomeTableViewController.clickbtn(_:)), forControlEvents: .TouchUpInside)
+            
+            
+            
+            
+            
+          self.navigationItem.leftBarButtonItem = UIBarButtonItem().customBarBtn("navigationbar_friendattention", tag: self, select: #selector(HomeTableViewController.left))
+            
+            
+              self.navigationItem.rightBarButtonItem = UIBarButtonItem().customBarBtn("navigationbar_pop", tag: self, select: #selector(HomeTableViewController.right))
+            
+        }
+    
+        
+        
+}
+    
+    
+func right()  {
+        print("点击右")
+    }
+    
+func left()  {
+        print("点击←")
+    }
+
+    
+func clickbtn(btn:UIButton)  {
+        
+        btn.selected = !btn.selected
+    
+    
+    
+    let mVC = MenViewController()
+    
+    
+    //mVC.modalTransitionStyle =
+    
+    
+    
+    
+    //设置模态展现样式
+    // 若自定义，模态控制器会直接显示在当前控制器的上面
+    mVC.modalPresentationStyle = .Custom
+    
+    
+    //因为在代理方法里自定义，所以挂代理
+    
+    
+    mVC.transitioningDelegate = self
+
+    
+    
+    self.presentViewController(mVC, animated: true, completion: nil)
+    
+    
+    
+    
+    
+    
+   
+    
+    
+        
+}
+    
+   //用于判断消失还是显示
+    
+    var ispresent = false
+    //移除通知
+    override func delete(sender: AnyObject?) {
+        
+        NSNotificationCenter.delete(self)
+        
+        
+    }
+    
+    
+ 
+}
+
+
+extension HomeTableViewController :UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning{
+    
+ 
+    
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?{
+        
+        
+        
+        
+        return puperPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    }
+
+    //显示时谁负责动画
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        
+        
+        
+        ispresent = true
+        
+        
+        return self
+        
+    }
+    //消失是谁负责动画
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        
+        
+        ispresent = false
+        return self
+    }
+    
+    
+    
+    //设置动画时间
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
+        
+        
+        return 0.5
+        
+    }
+    //获取动画上下文
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning){
+        
+      //获取到控制器
+        
+//        let toVC = transitionContext.viewControllerForKey("UITransitionContextToViewControllerKey")
+//        
+//        let frome = transitionContext.viewControllerForKey("UITransitionContextFromViewControllerKey")
+//        print((toVC))
+//        print((frome))
+        
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(kMenuView, object: nil)
+        
+        
+              if ispresent == true {
+            
+            
+                let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
+                
+               // print((toView))
+                //首先将y轴缩放为零
+                toView?.transform = CGAffineTransformMakeScale(1, 0)
+                //将试图添加到容器试图上
+                transitionContext.containerView()?.addSubview(toView!)
+                
+                //设置锚点
+                
+                toView?.layer.anchorPoint = CGPointMake(0.5, 0)
+                
+                
+                
+                //设置动画
+                
+                UIView.animateWithDuration(0.5, animations: {
+                    
+                    
+                    //恢复到原来的尺寸
+                    
+                    toView?.transform = CGAffineTransformIdentity
+                    
+                    
+                }) { (_) in
+                    
+                    transitionContext.completeTransition(true)
+                    
+                    
+                    
+                    
+                    
+                }
+
+            
+        }else{
+            
+                let fromV = transitionContext.viewForKey(UITransitionContextFromViewKey)
+                
+                //设置锚点
+                
+               fromV?.layer.anchorPoint = CGPointMake(0.5, 0)
+                
+              //设置消失动画
+                
+                UIView.animateWithDuration(0.5, animations: { 
+                    
+                   
+                    //将Y轴的缩放为0，cgfloat有是稍微不准确
+                    
+                    
+                    }, completion: { (_) in
+                        
+                     fromV?.transform = CGAffineTransformMakeScale(1, 0.00001)
+                        
+                        
+                })
+                
+                //动画完成一定要告诉上下文
+                 transitionContext.completeTransition(true)
+            
+                
+                
+            
+                
+                
+            
+        }
+        
+        
+        
+        
+    }
+    //试图显示和消失是会调用
+    func animationEnded(transitionCompleted: Bool){
+        
+        
+        
+        
+    }
+    
+      
+}
+
+
+
+
